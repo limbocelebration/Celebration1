@@ -326,13 +326,8 @@ async function requestDevice() {
   /* This function will be called when `readValue` resolves and
   * characteristic value changes since `characteristicvaluechanged` event
   * listener has been added. */
-  const animationstates = {
-    still : "still.gif",
-    low : "low.gif",
-    medium : "medium.gif",
-    high : "high.gif"
-  }
-  animationstates = still;
+
+  var animationstates = 0;
 
   function handleBatteryLevelChanged(event) {
     let batteryLevel = event;
@@ -360,25 +355,25 @@ async function requestDevice() {
         dispSpeed.innerHTML = Math.trunc(floatValue) + " RPM";
 
         switch(animationstates){
-          case still:
+          case 0:
             if (Math.abs(floatValue) > 0) {
-              animationstates = low;
+              animationstates = 1;
               document.getElementById("gifanimation").src="low.gif";
             }
             break;
-          case low:
+          case 1:
           if (Math.abs(floatValue) > 800) {
-            animationstates = medium;
+            animationstates = 2;
             document.getElementById("gifanimation").src="low.gif";
           }else if (Math.abs(floatValue) < 1) {
-            animationstates = still;
+            animationstates = 0;
             document.getElementById("gifanimation").src="still.gif";
           }
             break;
 
-            case medium:
+            case 2:
             if (Math.abs(floatValue) < 800) {
-              animationstates = low;
+              animationstates = 1;
               document.getElementById("gifanimation").src="low.gif";
             }
 
