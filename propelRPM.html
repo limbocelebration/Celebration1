@@ -356,13 +356,13 @@ async function requestDevice() {
 
         switch(animationstates){
           case 0:
-            if (Math.abs(floatValue) > 0) {
+            if (Math.abs(Math.abs(floatValue)) > 0) {
               animationstates = 1;
               document.getElementById("gifanimation").src="low.gif";
             }
             break;
           case 1:
-          if (Math.abs(floatValue) > 800) {
+          if (Math.abs(Math.abs(floatValue)) > 800) {
             animationstates = 2;
             document.getElementById("gifanimation").src="low.gif";
           }else if (Math.abs(floatValue) < 1) {
@@ -372,7 +372,7 @@ async function requestDevice() {
             break;
 
             case 2:
-            if (Math.abs(floatValue) < 800) {
+            if (Math.abs(Math.abs(floatValue)) < 800) {
               animationstates = 1;
               document.getElementById("gifanimation").src="low.gif";
             }
