@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Nicolas Dagieu</title>
+  <style>
+  p {
+    animation-duration: 3s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+
+  }
+
+  @keyframes slidein {
+    from {
+      margin-left: 0%;
+      width: 100%;
+      fill:blue;
+    }
+
+    to {
+      margin-left: 0%;
+      width: 99%;
+      fill:lightblue;
+    }
+  }
+
+
+  #matrixed{
+    width:50%;
+    margin-left:25%;
+    height: 95vh;
+    overflow:hidden;
+  }
+  .inside{
+    text-decoration:none;
+    color: "white";
+    height: 0px;
+  }
+
+  </style>
+  <script>
+  /*
+  function mat_to_disp() {
+
+  var temp = "";
+  for (let i = 1; i < 100; i++) {
+  temp += "<svg id = "+ i +" width=\"60\" height=\"60\" xmlns=\"http://www.w3.org/2000/svg\" ><circle cx=\"30\" cy=\"30\"><animate attributeName=\"r\" values=\"0;30;0\" dur=\""+(Math.abs(Math.sin((i+20)/180)) * 10)+10
+  +"s\" repeatCount=\"indefinite\"/></circle></svg>";
+}
+return temp;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+var mtd = document.getElementById("matrixed");
+mtd.innerHTML = mat_to_disp();
+});
+*/
+
+function getRandomColor() {
+  var letters = "0023456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+var w = window.innerWidth;
+var h = window.innerHeight;
+
+function mat_to_disp() {
+  var temp = "";
+  var tilesnumber = (w/120)*(h/60)+1;
+  for (let i = 0; i < tilesnumber; i++) {
+    var animationDelay = Math.random() * 2;
+    var backgroundColor = getRandomColor();
+
+    temp += `<a class="inside" href="http://nicolas.dagieu.free.fr/blog"><svg id="${i}" width="60" height="60">
+    <circle cx="30" cy="30" r="0" style="background-color:${backgroundColor};">
+    <animate attributeName="r" values="0;30;0" dur="1s" begin="${animationDelay}s" repeatCount="indefinite" />
+    </circle>
+    </svg>
+    </a>`;
+  }
+
+  return temp;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  var mtd = document.getElementById("matrixed");
+  mtd.innerHTML = mat_to_disp();
+
+  var svgs = document.getElementsByTagName("svg");
+  for (var i = 0; i < svgs.length; i++) {
+    svgs[i].addEventListener("mouseenter", function () {
+      var randomColor = getRandomColor();
+      this.style.fill = randomColor;
+      this.style.transform = "scaleX(2)";
+    });
+    svgs[i].addEventListener("mouseleave", function () {
+      this.style.fill = "black";
+      this.style.transform = "scaleX(1)";
+    });
+  }
+});
+
+</script>
+</head>
+<body>
+  <div id="matrixed">
+  </div>
+</body>
+</html>
