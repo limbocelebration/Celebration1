@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Astloch:wght@400&family=Style+Script&display=swap');
+  </style>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <title>Nicolas Dagieu</title>
@@ -26,11 +29,16 @@
     }
   }
 
-
   #matrixed{
-    width:50%;
-    margin-left:25%;
+    width:90%;
+    margin-left: 5%;
     height: 95vh;
+    background-color: white;
+    margin-top: 5%;
+  }
+  #matrixedcontainer{
+    width: 100%;
+    background-color: white;
     overflow:hidden;
   }
   .inside{
@@ -38,6 +46,21 @@
     color: "white";
     height: 0px;
   }
+  .stickynname{
+    position: fixed;
+    bottom: 0;
+    width: 90vw;
+    text-align: right;
+    padding-right: 10%;
+    padding-bottom: 5%;
+    font-family: Astloch;
+    font-size: 2em;
+  }
+  @media (max-width: 1660px) {
+  #matrixed{
+
+  }
+}
 
   </style>
   <script>
@@ -89,7 +112,7 @@ function mat_to_disp() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  var mtd = document.getElementById("matrixed");
+  var mtd = document.getElementById("matrixedcontainer");
   mtd.innerHTML = mat_to_disp();
 
   var svgs = document.getElementsByTagName("svg");
@@ -110,6 +133,11 @@ document.addEventListener("DOMContentLoaded", function () {
 </head>
 <body>
   <div id="matrixed">
+    <div id="matrixedcontainer">
+    </div>
   </div>
+  <div class="stickynname">
+  choose a circle
+</div>
 </body>
 </html>
